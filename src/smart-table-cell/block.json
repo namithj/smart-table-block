@@ -1,78 +1,110 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 3,
-	"name": "smartlogix/smart-table-cell",
-	"version": "1.0.0",
-	"title": "Smart Table Cell",
-	"category": "design",
-	"icon": "table-col-after",
-	"description": "A cell block for the Smart Table block.",
-	"textdomain": "smart-table-block",
-	"parent": [ "smartlogix/smart-table-row" ],
-	"usesContext": [ "smartlogix/smart-table/rowKind" ],
-	"supports": {
-		"html": false,
-		"reusable": false,
-		"inserter": false,
-		"className": true,
-		"color": {
-			"background": true,
-			"text": true,
-			"gradients": true
-		},
-		"spacing": {
-			"padding": true,
-			"margin": false,
-			"blockGap": true
-		},
-		"border": {
-			"color": true,
-			"radius": true,
-			"style": true,
-			"width": true
-		},
-		"dimensions": {
-			"minHeight": true
-		},
-		"typography": {
-			"fontFamily": true,
-			"fontStyle": true,
-			"fontSize": true,
-			"fontWeight": true,
-			"letterSpacing": true,
-			"lineHeight": true,
-			"textDecoration": true,
-			"textAlign": true,
-			"textTransform": true,
-			"writingMode": true
-		}
-	},
-	"attributes": {
-		"colSpan": {
-			"type": "number",
-			"default": 1
-		},
-		"rowSpan": {
-			"type": "number",
-			"default": 1
-		},
-		"width": {
-			"type": "string",
-			"default": ""
-		},
-		"verticalAlign": {
-			"type": "string",
-			"default": "",
-			"enum": [ "", "top", "middle", "bottom" ]
-		},
-		"scope": {
-			"type": "string",
-			"default": "",
-			"enum": [ "", "col", "row", "colgroup", "rowgroup" ]
-		}
-	},
-	"render": "file:./render.php",
-	"editorScript": "file:../index.js",
-	"editorStyle": "file:../index.css",
-	"style": "file:../style-index.css"
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "smartlogix/smart-table-cell",
+    "version": "1.0.0",
+    "title": "Smart Table Cell",
+    "category": "design",
+    "icon": "table-col-after",
+    "description": "A cell block for the Smart Table block.",
+    "textdomain": "smart-table-block",
+    "parent": [
+        "smartlogix/smart-table-row"
+    ],
+    "usesContext": [
+        "smartlogix/smart-table/rowKind"
+    ],
+    "supports": {
+        "html": false,
+        "reusable": false,
+        "inserter": false,
+        "className": true,
+        "color": {
+            "background": true,
+            "text": true,
+            "gradients": true
+        },
+        "spacing": {
+            "padding": true,
+            "margin": false,
+            "blockGap": true
+        },
+        "border": {
+            "color": true,
+            "radius": true,
+            "style": true,
+            "width": true
+        },
+        "dimensions": {
+            "minHeight": true
+        },
+        "typography": {
+            "fontSize": true,
+            "fontAppearance": true,
+            "textTransform": true,
+            "textDecoration": true,
+            "letterSpacing": true,
+            "writingMode": true,
+            "textAlign": true,
+            "lineHeight": true,
+            "fontFamily": true,
+            "__experimentalFontFamily": true,
+            "__experimentalFontStyle": true,
+            "__experimentalFontWeight": true,
+            "__experimentalLetterSpacing": true,
+            "__experimentalTextDecoration": true,
+            "__experimentalTextTransform": true,
+            "__experimentalWritingMode": true,
+            "__experimentalDefaultControls": {
+                "fontSize": true,
+                "fontAppearance": true,
+                "textTransform": true,
+                "textDecoration": true,
+                "letterSpacing": true,
+                "writingMode": true,
+                "textAlign": true,
+                "lineHeight": true,
+                "fontFamily": true
+            }
+        }
+    },
+    "attributes": {
+        "colSpan": {
+            "type": "number",
+            "default": 1
+        },
+        "rowSpan": {
+            "type": "number",
+            "default": 1
+        },
+        "width": {
+            "type": "string",
+            "default": ""
+        },
+        "verticalAlign": {
+            "type": "string",
+            "default": "",
+            "enum": [
+                "",
+                "top",
+                "middle",
+                "bottom"
+            ]
+        },
+        "scope": {
+            "type": "string",
+            "default": "",
+            "enum": [
+                "",
+                "col",
+                "row",
+                "colgroup",
+                "rowgroup"
+            ]
+        }
+    },
+    "render": "file:./render.php",
+    "editorScript": "file:../index.js",
+    "editorStyle": "file:../index.css",
+    "style": "file:../style-index.css"
 }

@@ -35,16 +35,27 @@
 			"minHeight": true
 		},
 		"typography": {
-			"fontFamily": true,
-			"fontStyle": true,
 			"fontSize": true,
-			"fontWeight": true,
-			"letterSpacing": true,
 			"lineHeight": true,
-			"textDecoration": true,
 			"textAlign": true,
-			"textTransform": true,
-			"writingMode": true
+			"__experimentalFontFamily": true,
+			"__experimentalFontStyle": true,
+			"__experimentalFontWeight": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalTextDecoration": true,
+			"__experimentalTextTransform": true,
+			"__experimentalWritingMode": true,
+			"__experimentalDefaultControls": {
+				"fontSize": true,
+				"fontAppearance": true,
+				"textTransform": true,
+				"textDecoration": true,
+				"letterSpacing": true,
+				"writingMode": true,
+				"textAlign": true,
+				"lineHeight": true,
+				"fontFamily": true
+			}
 		}
 	},
 	"attributes": {
