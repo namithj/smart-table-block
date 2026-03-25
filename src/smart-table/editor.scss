@@ -1,5 +1,4 @@
 .smart-table-editor {
-
 	&__scroller {
 		overflow-x: auto;
 		padding-bottom: 0.5rem;
@@ -34,7 +33,7 @@
 	}
 
 	&__table.has-striped-rows tbody tr:nth-child(even) {
-		background: rgba(0, 0, 0, 0.04);
+		background: rgba( 0, 0, 0, 0.04 );
 	}
 
 	&__table.has-sticky-header thead th {

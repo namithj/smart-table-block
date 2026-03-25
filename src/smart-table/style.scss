@@ -1,5 +1,4 @@
 .wp-block-smartlogix-smart-table {
-
 	.smart-table-block__scroller {
 		overflow-x: auto;
 	}
@@ -16,7 +15,7 @@
 	}
 
 	&.has-striped-rows tbody tr:nth-child(even) {
-		background: rgba(0, 0, 0, 0.04);
+		background: rgba( 0, 0, 0, 0.04 );
 	}
 
 	&.has-sticky-header thead th {
