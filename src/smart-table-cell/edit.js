@@ -1,12 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import {
-	BlockSettingsMenuControls,
 	InspectorControls,
 	useBlockProps,
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 import {
-	MenuItem,
+	Button,
 	PanelBody,
 	RangeControl,
 	SelectControl,
@@ -69,19 +68,6 @@ export default function Edit( { attributes, setAttributes, context, clientId } )
 
 	return (
 		<>
-			<BlockSettingsMenuControls>
-				{ ( { onClose } ) => (
-					<MenuItem
-						onClick={ () => {
-							applyCellStylesToAllCells();
-							onClose();
-						} }
-					>
-						{ __( 'Apply This Cell Style To All Cells', 'smart-table-block' ) }
-					</MenuItem>
-				) }
-			</BlockSettingsMenuControls>
-
 			<InspectorControls>
 				<PanelBody
 					title={ __( 'Cell Settings', 'smart-table-block' ) }
@@ -175,6 +161,12 @@ export default function Edit( { attributes, setAttributes, context, clientId } )
 							}
 						/>
 					) }
+					<Button
+						variant="secondary"
+						onClick={ applyCellStylesToAllCells }
+					>
+						{ __( 'Apply This Cell Style To All Cells', 'smart-table-block' ) }
+					</Button>
 				</PanelBody>
 			</InspectorControls>
 
