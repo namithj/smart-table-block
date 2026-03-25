@@ -1,0 +1,90 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "smartlogix/smart-table",
+  "version": "1.0.0",
+  "title": "Smart Table",
+  "category": "design",
+  "icon": "table-col-after",
+  "description": "Build semantic tables with nested row and cell blocks, rich styling controls, and per-row overrides.",
+  "keywords": [
+    "table",
+    "smart table",
+    "grid",
+    "rows",
+    "cells"
+  ],
+  "textdomain": "smart-table-block",
+  "supports": {
+    "html": false,
+    "reusable": true,
+    "anchor": true,
+    "className": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "gradients": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": false
+    },
+    "border": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    },
+    "dimensions": {
+      "minHeight": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true
+    }
+  },
+  "attributes": {
+    "caption": {
+      "type": "string",
+      "default": ""
+    },
+    "tableLayout": {
+      "type": "string",
+      "default": "auto",
+      "enum": [
+        "auto",
+        "fixed"
+      ]
+    },
+    "borderCollapse": {
+      "type": "string",
+      "default": "collapse",
+      "enum": [
+        "collapse",
+        "separate"
+      ]
+    },
+    "stripedRows": {
+      "type": "boolean",
+      "default": false
+    },
+    "stickyHeader": {
+      "type": "boolean",
+      "default": false
+    },
+    "responsiveScroll": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "render": "file:./render.php",
+  "editorScript": "file:../index.js",
+  "editorStyle": "file:../index.css",
+  "style": "file:../style-index.css"
+}

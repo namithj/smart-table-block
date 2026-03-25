@@ -1,0 +1,27 @@
+.wp-block-smartlogix-smart-table {
+
+	.smart-table-block__scroller {
+		overflow-x: auto;
+	}
+
+	.smart-table-block__table {
+		width: 100%;
+		max-width: 100%;
+		background: transparent;
+
+		caption {
+			padding: 0.5rem 0;
+			text-align: left;
+		}
+	}
+
+	&.has-striped-rows tbody tr:nth-child(even) {
+		background: rgba(0, 0, 0, 0.04);
+	}
+
+	&.has-sticky-header thead th {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+	}
+}

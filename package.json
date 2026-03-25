@@ -1,0 +1,35 @@
+{
+	"name": "smart-table-block",
+	"version": "1.0.0",
+	"private": true,
+	"description": "A Gutenberg smart table block with nested row and cell blocks, rich styling controls, and semantic table rendering.",
+	"author": "Smartlogix",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"wordpress",
+		"gutenberg",
+		"block",
+		"table",
+		"smart table",
+		"inner blocks"
+	],
+	"homepage": "https://github.com/namithj/smart-table-block",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/namithj/smart-table-block.git"
+	},
+	"bugs": {
+		"url": "https://github.com/namithj/smart-table-block/issues"
+	},
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style",
+		"format": "wp-scripts format",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.0.0"
+	}
+}

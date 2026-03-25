@@ -1,0 +1,49 @@
+.smart-table-editor {
+
+	&__scroller {
+		overflow-x: auto;
+		padding-bottom: 0.5rem;
+	}
+
+	&__table {
+		width: 100%;
+		min-width: 32rem;
+		background: transparent;
+
+		caption {
+			padding: 0.5rem;
+			font-weight: 600;
+			text-align: left;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		gap: 0.5rem;
+		margin-top: 1rem;
+		flex-wrap: wrap;
+	}
+
+	tr.block-editor-block-list__block {
+		vertical-align: top;
+	}
+
+	td,
+	th {
+		min-width: 10rem;
+	}
+
+	&__table.has-striped-rows tbody tr:nth-child(even) {
+		background: rgba(0, 0, 0, 0.04);
+	}
+
+	&__table.has-sticky-header thead th {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+	}
+
+	.is-scroll-enabled {
+		overflow-x: auto;
+	}
+}

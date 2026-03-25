@@ -1,0 +1,56 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "smartlogix/smart-table-row",
+	"version": "1.0.0",
+	"title": "Smart Table Row",
+	"category": "design",
+	"icon": "table-row-after",
+	"description": "A row block for the Smart Table block.",
+	"textdomain": "smart-table-block",
+	"parent": [ "smartlogix/smart-table" ],
+	"supports": {
+		"html": false,
+		"reusable": false,
+		"inserter": false,
+		"className": true,
+		"color": {
+			"background": true,
+			"text": true,
+			"gradients": true
+		},
+		"spacing": {
+			"padding": true,
+			"margin": false,
+			"blockGap": false
+		},
+		"border": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		},
+		"dimensions": {
+			"minHeight": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"textAlign": true
+		}
+	},
+	"attributes": {
+		"rowKind": {
+			"type": "string",
+			"default": "body",
+			"enum": [ "header", "body", "footer" ]
+		}
+	},
+	"providesContext": {
+		"smartlogix/smart-table/rowKind": "rowKind"
+	},
+	"render": "file:./render.php",
+	"editorScript": "file:../index.js",
+	"editorStyle": "file:../index.css",
+	"style": "file:../style-index.css"
+}
