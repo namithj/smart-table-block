@@ -6,6 +6,7 @@ import {
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 import {
+	Button,
 	PanelBody,
 	SelectControl,
 	ToolbarButton,
@@ -25,11 +26,32 @@ const createCellBlock = () =>
 
 export default function Edit( { attributes, setAttributes, clientId } ) {
 	const { rowKind } = attributes;
-	const { insertBlock } = useDispatch( 'core/block-editor' );
-	const cellCount = useSelect(
-		( select ) => select( 'core/block-editor' ).getBlockCount( clientId ),
+	const { insertBlock, updateBlockAttributes } = useDispatch(
+		'core/block-editor'
+	);
+	const { cellCount, siblingRowIds } = useSelect(
+		( select ) => {
+			const blockEditor = select( 'core/block-editor' );
+			const rootClientId = blockEditor.getBlockRootClientId( clientId );
+
+			return {
+				cellCount: blockEditor.getBlockCount( clientId ),
+				siblingRowIds: blockEditor.getBlockOrder( rootClientId ) || [],
+			};
+		},
 		[ clientId ]
 	);
+
+	const applyRowStylesToAllRows = () => {
+		updateBlockAttributes( siblingRowIds, {
+			backgroundColor: attributes.backgroundColor,
+			borderColor: attributes.borderColor,
+			fontSize: attributes.fontSize,
+			gradient: attributes.gradient,
+			style: attributes.style,
+			textColor: attributes.textColor,
+		} );
+	};
 
 	const blockProps = useBlockProps( {
 		className: `smart-table-row smart-table-row--${ rowKind }`,
@@ -73,6 +95,12 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
 							'smart-table-block'
 						) }
 					/>
+					<Button
+						variant="secondary"
+						onClick={ applyRowStylesToAllRows }
+					>
+						{ __( 'Apply This Row Style To All Rows', 'smart-table-block' ) }
+					</Button>
 				</PanelBody>
 			</InspectorControls>
 

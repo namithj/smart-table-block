@@ -1,4 +1,9 @@
 .smart-table-cell {
 	vertical-align: inherit;
 	word-break: break-word;
+
+	p {
+		margin: 0;
+		padding: 0;
+	}
 }

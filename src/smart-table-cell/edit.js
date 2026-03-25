@@ -5,11 +5,13 @@ import {
 	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 import {
+	Button,
 	PanelBody,
 	RangeControl,
 	SelectControl,
 	TextControl,
 } from '@wordpress/components';
+import { useDispatch, useSelect } from '@wordpress/data';
 
 const TEMPLATE = [
 	[
@@ -20,10 +22,20 @@ const TEMPLATE = [
 	],
 ];
 
-export default function Edit( { attributes, setAttributes, context } ) {
+export default function Edit( { attributes, setAttributes, context, clientId } ) {
 	const { colSpan, rowSpan, width, verticalAlign, scope } = attributes;
 	const rowKind = context[ 'smartlogix/smart-table/rowKind' ] || 'body';
 	const TagName = 'header' === rowKind ? 'th' : 'td';
+	const { updateBlockAttributes } = useDispatch( 'core/block-editor' );
+	const siblingCellIds = useSelect(
+		( select ) => {
+			const blockEditor = select( 'core/block-editor' );
+			const rootClientId = blockEditor.getBlockRootClientId( clientId );
+
+			return blockEditor.getBlockOrder( rootClientId ) || [];
+		},
+		[ clientId ]
+	);
 
 	const blockProps = useBlockProps( {
 		className: `smart-table-cell smart-table-cell--${ rowKind }`,
@@ -40,6 +52,19 @@ export default function Edit( { attributes, setAttributes, context } ) {
 		template: TEMPLATE,
 		renderAppender: false,
 	} );
+
+	const applyCellStylesToAllCells = () => {
+		updateBlockAttributes( siblingCellIds, {
+			backgroundColor: attributes.backgroundColor,
+			borderColor: attributes.borderColor,
+			fontSize: attributes.fontSize,
+			gradient: attributes.gradient,
+			style: attributes.style,
+			textColor: attributes.textColor,
+			verticalAlign,
+			width,
+		} );
+	};
 
 	return (
 		<>
@@ -136,6 +161,12 @@ export default function Edit( { attributes, setAttributes, context } ) {
 							}
 						/>
 					) }
+					<Button
+						variant="secondary"
+						onClick={ applyCellStylesToAllCells }
+					>
+						{ __( 'Apply This Cell Style To All Cells', 'smart-table-block' ) }
+					</Button>
 				</PanelBody>
 			</InspectorControls>
 

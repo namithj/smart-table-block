@@ -1,4 +1,9 @@
 .smart-table-cell {
 	min-width: 10rem;
 	vertical-align: top;
+
+	p {
+		margin: 0;
+		padding: 0;
+	}
 }
