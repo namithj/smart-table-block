@@ -36,9 +36,16 @@
       "minHeight": true
     },
     "typography": {
+      "fontFamily": true,
+      "fontStyle": true,
       "fontSize": true,
+      "fontWeight": true,
+      "letterSpacing": true,
       "lineHeight": true,
-      "textAlign": true
+      "textDecoration": true,
+      "textAlign": true,
+      "textTransform": true,
+      "writingMode": true
     }
   },
   "attributes": {
