@@ -29,11 +29,17 @@
             "margin": false,
             "blockGap": true
         },
-        "border": {
+        "__experimentalBorder": {
             "color": true,
             "radius": true,
             "style": true,
-            "width": true
+            "width": true,
+            "__experimentalDefaultControls": {
+                "color": true,
+                "radius": true,
+                "style": true,
+                "width": true
+            }
         },
         "dimensions": {
             "minHeight": true
