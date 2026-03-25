@@ -40,6 +40,23 @@ if ( empty( $block->inner_blocks ) ) {
 	return;
 }
 
+$first_row = $block->inner_blocks[0] ?? null;
+
+$column_widths = array();
+
+if ( $first_row && ! empty( $first_row->inner_blocks ) ) {
+	foreach ( $first_row->inner_blocks as $cell_block ) {
+		$col_span = max( 1, (int) ( $cell_block->attributes['colSpan'] ?? 1 ) );
+		$width    = isset( $cell_block->attributes['width'] )
+			? trim( (string) $cell_block->attributes['width'] )
+			: '';
+
+		for ( $index = 0; $index < $col_span; $index++ ) {
+			$column_widths[] = $width;
+		}
+	}
+}
+
 $section_rows = array(
 	'header' => array(),
 	'body'   => array(),
@@ -97,6 +114,31 @@ $render_section = static function ( $tag_name, $rows ) {
 	<?php
 	return ob_get_clean();
 };
+
+$render_colgroup = static function ( $widths ) {
+	if ( empty( $widths ) ) {
+		return '';
+	}
+
+	$has_widths = array_filter(
+		$widths,
+		static fn( $width ) => '' !== $width
+	);
+
+	if ( empty( $has_widths ) ) {
+		return '';
+	}
+
+	ob_start();
+	?>
+	<colgroup>
+		<?php foreach ( $widths as $width ) : ?>
+			<col<?php echo '' !== $width ? ' style="width:' . esc_attr( $width ) . '"' : ''; ?> />
+		<?php endforeach; ?>
+	</colgroup>
+	<?php
+	return ob_get_clean();
+};
 ?>
 
 <figure <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> >
@@ -105,6 +147,7 @@ $render_section = static function ( $tag_name, $rows ) {
 			<?php if ( '' !== $caption ) : ?>
 				<caption><?php echo wp_kses_post( $caption ); ?></caption>
 			<?php endif; ?>
+			<?php echo $render_colgroup( $column_widths ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php echo $render_section( 'thead', $section_rows['header'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php echo $render_section( 'tbody', $section_rows['body'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<?php echo $render_section( 'tfoot', $section_rows['footer'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

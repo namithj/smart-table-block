@@ -27,12 +27,34 @@ export default function Edit( { attributes, setAttributes, context, clientId } )
 	const rowKind = context[ 'smartlogix/smart-table/rowKind' ] || 'body';
 	const TagName = 'header' === rowKind ? 'th' : 'td';
 	const { updateBlockAttributes } = useDispatch( 'core/block-editor' );
-	const siblingCellIds = useSelect(
+	const { allCellIds, isFirstRow } = useSelect(
 		( select ) => {
 			const blockEditor = select( 'core/block-editor' );
-			const rootClientId = blockEditor.getBlockRootClientId( clientId );
+			const rowClientId = blockEditor.getBlockRootClientId( clientId );
+			const tableClientId = rowClientId
+				? blockEditor.getBlockRootClientId( rowClientId )
+				: null;
+			const rowIds = tableClientId
+				? blockEditor.getBlockOrder( tableClientId ) || []
+				: [];
+			const firstRowClientId = rowIds[ 0 ] || rowClientId || null;
 
-			return blockEditor.getBlockOrder( rootClientId ) || [];
+			if ( ! tableClientId ) {
+				return {
+					allCellIds: rowClientId
+						? blockEditor.getBlockOrder( rowClientId ) || []
+						: [],
+					isFirstRow: !! rowClientId,
+				};
+			}
+
+			return {
+				allCellIds: rowIds.flatMap(
+					( currentRowClientId ) =>
+						blockEditor.getBlockOrder( currentRowClientId ) || []
+				),
+				isFirstRow: rowClientId === firstRowClientId,
+			};
 		},
 		[ clientId ]
 	);
@@ -54,7 +76,7 @@ export default function Edit( { attributes, setAttributes, context, clientId } )
 	} );
 
 	const applyCellStylesToAllCells = () => {
-		updateBlockAttributes( siblingCellIds, {
+		updateBlockAttributes( allCellIds, {
 			backgroundColor: attributes.backgroundColor,
 			borderColor: attributes.borderColor,
 			fontSize: attributes.fontSize,
@@ -102,6 +124,17 @@ export default function Edit( { attributes, setAttributes, context, clientId } )
 							setAttributes( { width: value } )
 						}
 						placeholder="e.g. 240px, 20%, 12rem"
+						help={
+							isFirstRow
+								? __(
+									'Widths set on first-row cells define the table columns.',
+									'smart-table-block'
+								)
+								: __(
+									'Use first-row cells to define column widths for the whole table.',
+									'smart-table-block'
+								)
+						}
 					/>
 					<SelectControl
 						label={ __( 'Vertical Align', 'smart-table-block' ) }
