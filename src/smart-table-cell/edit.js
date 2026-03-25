@@ -1,6 +1,5 @@
 import { __ } from '@wordpress/i18n';
 import {
-	InnerBlocks,
 	InspectorControls,
 	useBlockProps,
 	useInnerBlocksProps,
@@ -39,7 +38,7 @@ export default function Edit( { attributes, setAttributes, context } ) {
 
 	const innerBlocksProps = useInnerBlocksProps( blockProps, {
 		template: TEMPLATE,
-		renderAppender: InnerBlocks.ButtonBlockAppender,
+		renderAppender: false,
 	} );
 
 	return (
